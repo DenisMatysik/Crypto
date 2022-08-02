@@ -15,7 +15,12 @@ export default function AllCryptos({ allCryptos, loading }: any) {
         </thead>
         <tbody>
           {allCryptos.map((crypto: any, index: any) => (
-            <tr key={crypto.id}>
+            <tr
+              key={crypto.id}
+              onClick={() => {
+                console.log("+");
+              }}
+            >
               <td>{crypto.rank}</td>
               <td>{crypto.name}</td>
               <td>{crypto.priceUsd}</td>

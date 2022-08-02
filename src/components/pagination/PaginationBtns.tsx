@@ -1,6 +1,10 @@
 import "./Pagination";
 
-export default function Pag({ cryptoPerPage, totalCryptos, paginate }: any) {
+export default function PaginationBtns({
+  cryptoPerPage,
+  totalCryptos,
+  paginate,
+}: any) {
   const pageCryptos = [];
   for (let i = 1; i <= Math.ceil(totalCryptos / cryptoPerPage); i++) {
     pageCryptos.push(i);
