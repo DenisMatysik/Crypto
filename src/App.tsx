@@ -6,7 +6,7 @@ import Main from "./pages/Main";
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<Main />} />
+      <Route path="/Crypto" element={<Main />} />
       <Route path="/about" element={<AboutCrypto />} />
     </Routes>
   );
