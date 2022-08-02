@@ -1,0 +1,29 @@
+button {
+  margin: 0.2rem;
+  font-size: 1.5rem;
+  padding: 0.5rem;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s ease all;
+  &:hover {
+    background-color: rgb(93, 90, 90);
+    color: white;
+  }
+}
+
+.paginationBtns {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.prevNextBtns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .prevBtns {
+  }
+  .nextBtns {
+  }
+}

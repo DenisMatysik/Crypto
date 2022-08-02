@@ -1,16 +1,17 @@
 import "./App.css";
 import Header from "./components/header/Header";
-import Table from "./components/table/Table";
-import ModalPortfolio from "./components/modal/ModalPortfolio";
 import ModalAdd from "./components/modal/ModalAdd";
+import Pagination from "./components/pagination/Pagination";
+import PaginationBtns from "./components/pagination/PaginationBtns";
 
 function App() {
   return (
     <div className="App">
       <Header />
-      <Table />
-      <ModalPortfolio />
+      <Pagination />
+      <PaginationBtns />
       {/* <ModalAdd /> */}
+      {/* <ModalPortfolio /> */}
     </div>
   );
 }
