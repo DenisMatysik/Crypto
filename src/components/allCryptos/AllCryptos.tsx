@@ -1,4 +1,4 @@
-import React from "react";
+import "./AllCryptos.scss";
 
 export default function AllCryptos({ allCryptos, loading }: any) {
   return (
@@ -21,7 +21,7 @@ export default function AllCryptos({ allCryptos, loading }: any) {
               <td>{crypto.priceUsd}</td>
               <td>{crypto.changePercent24Hr}</td>
               <td>
-                <button>+</button>
+                <button className="cryptoBtn">+</button>
               </td>
             </tr>
           ))}

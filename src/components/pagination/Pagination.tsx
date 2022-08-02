@@ -8,7 +8,7 @@ export default function Pagination() {
   const [allCryptos, setAllCryptos] = useState<ICrypto[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const cryptoPerPage = 10;
+  const cryptoPerPage = 7;
 
   async function fetctCryptos() {
     try {
@@ -35,10 +35,14 @@ export default function Pagination() {
     setCurrentPage(pageNumber);
   };
   const nextPage = () => {
-    setCurrentPage((prev) => prev + 1);
+    if (currentPage != Math.ceil(allCryptos.length / cryptoPerPage)) {
+      setCurrentPage((prev) => prev + 1);
+    }
   };
   const prevPage = () => {
-    setCurrentPage((prev) => prev - 1);
+    if (currentPage != 1) {
+      setCurrentPage((prev) => prev - 1);
+    }
   };
 
   return (

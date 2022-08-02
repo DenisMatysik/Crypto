@@ -9,6 +9,7 @@ export default function Pag({ cryptoPerPage, totalCryptos, paginate }: any) {
     <div className="paginationBtns">
       {pageCryptos.map((el) => (
         <button
+          className="cryptoBtn"
           key={el}
           onClick={() => {
             paginate(el);
