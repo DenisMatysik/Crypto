@@ -1,10 +1,14 @@
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import "./Header.scss";
 
 export default function Header() {
+  const inf = useSelector((state: any) => state.crypto.cryptoAll);
+  const asd = window.localStorage.getItem("cryptoAll");
   return (
     <header>
       <div>
-        Top 3 ratting cryptos : <span>Bitcoin</span>, <span>Ethereum</span>,
+        Top 3 ratting cryptos : {} <span>Bitcoin</span>, <span>Ethereum</span>,
         <span>Tether</span>
       </div>
       <div className="portfolio">
@@ -14,7 +18,7 @@ export default function Header() {
           src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
           alt="you_portfolio"
           onClick={() => {
-            console.log("modal opne");
+            console.log(asd);
           }}
         />
       </div>

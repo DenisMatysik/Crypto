@@ -12,16 +12,11 @@ const getInitialCryptos = () => {
 const getInitialCryptosAll = () => {
   async function fetchCryptos() {
     const response = await fetch("https://api.coincap.io/v2/assets");
-    let data = await response.json;
-    console.log(data);
-    return data;
+    let data = await response.json();
+    let inf = await data.data;
+    return window.localStorage.setItem("cryptoAll", JSON.stringify(inf));
   }
-  const localCryptos = window.localStorage.getItem("cryptoAll");
-  if (localCryptos) {
-    return JSON.parse(localCryptos);
-  }
-  window.localStorage.setItem("cryptoAll", JSON.stringify([]));
-  return [];
+  fetchCryptos();
 };
 
 const initialState = {
