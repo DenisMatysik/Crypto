@@ -1,6 +1,10 @@
+import { useState } from "react";
+import ModalAdd from "../modal/ModalAdd";
 import "./AllCryptos.scss";
 
 export default function AllCryptos({ allCryptos, loading }: any) {
+  const [open, setOpen] = useState(false);
+  const [cryptoInf, setCryptoInf] = useState({});
   return (
     <ul className="allCrypto">
       <table>
@@ -14,24 +18,27 @@ export default function AllCryptos({ allCryptos, loading }: any) {
           </tr>
         </thead>
         <tbody>
-          {allCryptos.map((crypto: any, index: any) => (
-            <tr
-              key={crypto.id}
-              onClick={() => {
-                console.log("+");
-              }}
-            >
+          {allCryptos.map((crypto: any) => (
+            <tr key={crypto.id}>
               <td>{crypto.rank}</td>
               <td>{crypto.name}</td>
               <td>{crypto.priceUsd}</td>
               <td>{crypto.changePercent24Hr}</td>
               <td>
-                <button className="cryptoBtn">+</button>
+                <button
+                  onClick={() => {
+                    setOpen(true);
+                    setCryptoInf(crypto);
+                  }}
+                >
+                  +
+                </button>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+      {open && <ModalAdd setOpen={setOpen} cryptoInf={cryptoInf} />}
     </ul>
   );
 }

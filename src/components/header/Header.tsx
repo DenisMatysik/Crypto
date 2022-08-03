@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import ModalPortfolio from "../modal/ModalPortfolio";
 import "./Header.scss";
 
 export default function Header() {
+  const [openPortfolio, setOpenPortfolio] = useState(false);
   const inf = useSelector((state: any) => state.crypto.cryptoAll);
   const asd = window.localStorage.getItem("cryptoAll");
   return (
@@ -18,10 +20,11 @@ export default function Header() {
           src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
           alt="you_portfolio"
           onClick={() => {
-            console.log(asd);
+            setOpenPortfolio(true);
           }}
         />
       </div>
+      {openPortfolio && <ModalPortfolio setOpenPortfolio={setOpenPortfolio} />}
     </header>
   );
 }

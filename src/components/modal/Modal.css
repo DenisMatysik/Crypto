@@ -4,7 +4,7 @@
   left: 0;
   width: 100%;
   height: 100vh;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 1000;
   display: flex;
   justify-content: center;
@@ -13,7 +13,7 @@
 
 .containerMod {
   background-color: white;
-  max-width: 500px;
+  max-width: 400px;
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -45,4 +45,28 @@
 .closeButton:hover {
   background-color: #e32525;
   color: white;
+}
+
+.addButton:hover {
+  background-color: #0dbb30;
+}
+
+.modalBtns {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.modalInput {
+  width: 100%;
+  padding: 0.7rem;
+}
+
+.modalTitle {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.portfolioInf {
+  display: flex;
 }
