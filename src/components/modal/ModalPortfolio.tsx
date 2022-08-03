@@ -23,6 +23,7 @@ export default function ModalPortfolio({ setOpenPortfolio }: any) {
             className="closeButton "
             onClick={() => {
               setOpenPortfolio(false);
+              console.log(portfolioInf);
             }}
           >
             X

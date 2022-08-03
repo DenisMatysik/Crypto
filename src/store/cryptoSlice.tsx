@@ -9,19 +9,8 @@ const getInitialCryptos = () => {
   return [];
 };
 
-const getInitialCryptosAll = () => {
-  async function fetchCryptos() {
-    const response = await fetch("https://api.coincap.io/v2/assets");
-    let data = await response.json();
-    let inf = await data.data;
-    return window.localStorage.setItem("cryptoAll", JSON.stringify(inf));
-  }
-  fetchCryptos();
-};
-
 const initialState = {
   cryptoList: getInitialCryptos(),
-  allCryptos: getInitialCryptosAll(),
 };
 
 const cryptoSlice = createSlice({
@@ -61,14 +50,13 @@ const cryptoSlice = createSlice({
         state.cryptoList = cryptoListArr;
       }
     },
-    updateAllCryptos: (state) => {},
     // updateCrypto: (state, action) => {
     //   const cryptoList = window.localStorage.getItem("cryptoList");
     //   if (cryptoList) {
     //     const cryptoListArr = JSON.parse(cryptoList);
     //     cryptoListArr.forEach((crypto: any) => {
     //       if (crypto.id === action.payload.id) {
-    //         crypto.count = action.payload.count;
+    //         crypto.inputInf = action.payload.inputInf;
     //       }
     //     });
     //     window.localStorage.setItem(

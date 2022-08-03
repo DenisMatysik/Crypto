@@ -5,8 +5,20 @@ import "./Header.scss";
 
 export default function Header() {
   const [openPortfolio, setOpenPortfolio] = useState(false);
-  const inf = useSelector((state: any) => state.crypto.cryptoAll);
-  const asd = window.localStorage.getItem("cryptoAll");
+  const inf = useSelector((state: any) => state.crypto.cryptoList);
+
+  const sumPortfolio = inf.map((item: any) => {
+    const count = item.inputInf;
+    const name = item.cryptoInf.id;
+    return { name, count };
+  });
+
+  // старые цена всего портфлея
+  const totalCount = inf.reduce((accum: number, item: any) => {
+    const inf = +item.inputInf * item.cryptoInf.priceUsd;
+    return accum + inf;
+  }, 0);
+
   return (
     <header>
       <div>
@@ -14,7 +26,8 @@ export default function Header() {
         <span>Tether</span>
       </div>
       <div className="portfolio">
-        <span>134,32 USD</span> <span>+-2,38</span> <span>(1,8%)</span>
+        <span>{totalCount.toFixed(3)}</span> <span>+-2,38</span>{" "}
+        <span>(1,8%)</span>
         <img
           className="portfolio_img"
           src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
