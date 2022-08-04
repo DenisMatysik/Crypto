@@ -1,0 +1,32 @@
+.cryptoContainer {
+  display: flex;
+  justify-content: center;
+  .cryptoInf {
+    margin-top: 5rem;
+    h1 {
+      text-align: center;
+    }
+    button {
+      margin-top: 2rem;
+      transition: 0.3s ease all;
+      cursor: pointer;
+      &:hover {
+        background-color: grey;
+        color: white;
+      }
+    }
+    .link {
+      margin-top: 1rem;
+      a {
+        border-radius: 10px;
+        text-decoration: none;
+        &:hover {
+          padding: 0.3rem;
+          transition: 0.5s ease all;
+          color: white;
+          background-color: gray;
+        }
+      }
+    }
+  }
+}

@@ -1,5 +1,6 @@
 import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
+import "./AboutCrypto.scss";
 
 export default function AboutCrypto() {
   const allInf = useSelector((state: any) => state.crypto.allCryptos);
@@ -45,14 +46,15 @@ export default function AboutCrypto() {
             </tbody>
           </table>
           <div>Here must be graff</div>
-          <footer>
+          <div className="link">
+            Explorer:{" "}
             <a target={"_blank"} href={`${singleCryptoInf[0].explorer}`}>
-              explorer: {singleCryptoInf[0].explorer}
+              {singleCryptoInf[0].explorer}
             </a>
-          </footer>
+          </div>
+          <button onClick={goBack}>Back</button>
         </div>
       </div>
-      <h2 onClick={goBack}>Back</h2>
     </>
   );
 }
