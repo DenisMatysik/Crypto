@@ -34,35 +34,41 @@ export default function Header() {
     0
   );
 
-  return (
-    <header>
-      <div>
-        Top 3 ratting cryptos : {} <span>{allInf[0].name}</span>,{" "}
-        <span>{allInf[1].name}</span>,<span>{allInf[2].name}</span>
-      </div>
-      <div className="portfolio">
-        <div className="inf">
-          <span>Total:{updatePricePortfolio.toFixed(3)}$</span>
-          <span>
-            Difference:{(oldPricePortfolio - updatePricePortfolio).toFixed(3)}$
-            (
-            {(
-              ((oldPricePortfolio - updatePricePortfolio) / oldPricePortfolio) *
-              100
-            ).toFixed(3)}
-            %)
-          </span>
+  if (allInf) {
+    return <div>Empty</div>;
+  } else
+    return (
+      <header>
+        <div>
+          Top 3 ratting cryptos : {} <span>{allInf[0].name}</span>,{" "}
+          <span>{allInf[1].name}</span>,<span>{allInf[2].name}</span>
         </div>
-        <img
-          className="portfolio_img"
-          src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
-          alt="you_portfolio"
-          onClick={() => {
-            setOpenPortfolio(true);
-          }}
-        />
-      </div>
-      {openPortfolio && <ModalPortfolio setOpenPortfolio={setOpenPortfolio} />}
-    </header>
-  );
+        <div className="portfolio">
+          <div className="inf">
+            <span>Total:{updatePricePortfolio.toFixed(3)}$</span>
+            <span>
+              Difference:{(oldPricePortfolio - updatePricePortfolio).toFixed(3)}
+              $ (
+              {(
+                ((oldPricePortfolio - updatePricePortfolio) /
+                  oldPricePortfolio) *
+                100
+              ).toFixed(3)}
+              %)
+            </span>
+          </div>
+          <img
+            className="portfolio_img"
+            src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
+            alt="you_portfolio"
+            onClick={() => {
+              setOpenPortfolio(true);
+            }}
+          />
+        </div>
+        {openPortfolio && (
+          <ModalPortfolio setOpenPortfolio={setOpenPortfolio} />
+        )}
+      </header>
+    );
 }
