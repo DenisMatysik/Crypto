@@ -14,6 +14,7 @@ export default function AllCryptos({ allCryptos, loading }: any) {
             <td>name</td>
             <td>priceUsd</td>
             <td>changePercent24Hr</td>
+            <td>marketCapUsd</td>
             <td>Add to you </td>
           </tr>
         </thead>
@@ -22,8 +23,10 @@ export default function AllCryptos({ allCryptos, loading }: any) {
             <tr key={crypto.id}>
               <td>{crypto.rank}</td>
               <td>{crypto.name}</td>
-              <td>{crypto.priceUsd}</td>
-              <td>{crypto.changePercent24Hr}</td>
+              <td>{(+crypto.priceUsd).toFixed(3)}</td>
+              <td>{(+crypto.changePercent24Hr).toFixed(3)}</td>
+              <td>{(+crypto.marketCapUsd).toFixed(3)}</td>
+
               <td>
                 <button
                   onClick={() => {

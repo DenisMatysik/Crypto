@@ -9,8 +9,18 @@ const getInitialCryptos = () => {
   return [];
 };
 
+const getAllCryptos = () => {
+  const allCryptos = window.localStorage.getItem("AllCryptos");
+  if (allCryptos) {
+    return JSON.parse(allCryptos);
+  }
+  window.localStorage.setItem("AllCryptos", JSON.stringify([]));
+  return [];
+};
+
 const initialState = {
   cryptoList: getInitialCryptos(),
+  allCryptos: getAllCryptos(),
 };
 
 const cryptoSlice = createSlice({
@@ -50,6 +60,9 @@ const cryptoSlice = createSlice({
         state.cryptoList = cryptoListArr;
       }
     },
+    addAllCryptos: (state, action) => {
+      window.localStorage.setItem("AllCryptos", JSON.stringify(action.payload));
+    },
     // updateCrypto: (state, action) => {
     //   const cryptoList = window.localStorage.getItem("cryptoList");
     //   if (cryptoList) {
@@ -69,6 +82,6 @@ const cryptoSlice = createSlice({
   },
 });
 
-export const { addCrypto, deleteCrypto } = cryptoSlice.actions;
+export const { addCrypto, deleteCrypto, addAllCryptos } = cryptoSlice.actions;
 
 export default cryptoSlice.reducer;

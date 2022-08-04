@@ -3,12 +3,15 @@ import AllCryptos from "../allCryptos/AllCryptos";
 import { ICrypto } from "../../model";
 import PaginationBtns from "./PaginationBtns";
 import "./Pagination.scss";
+import { useDispatch } from "react-redux";
+import { addAllCryptos } from "../../store/cryptoSlice";
 
 export default function Pagination() {
   const [allCryptos, setAllCryptos] = useState<ICrypto[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const cryptoPerPage = 7;
+  const cryptoPerPage = 10;
+  const dispatch = useDispatch();
 
   async function fetctCryptos() {
     try {
@@ -17,6 +20,7 @@ export default function Pagination() {
       let data = await response.json();
       setAllCryptos(data.data);
       setLoading(false);
+      dispatch(addAllCryptos(data.data));
     } catch (error) {
       console.log("Fetch error: ", error);
       setLoading(false);

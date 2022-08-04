@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { ICrypto } from "../../model";
 import { deleteCrypto } from "../../store/cryptoSlice";
@@ -23,7 +22,6 @@ export default function ModalPortfolio({ setOpenPortfolio }: any) {
             className="closeButton "
             onClick={() => {
               setOpenPortfolio(false);
-              console.log(portfolioInf);
             }}
           >
             X
@@ -31,10 +29,11 @@ export default function ModalPortfolio({ setOpenPortfolio }: any) {
           <table>
             <thead>
               <tr>
-                <td>Name</td>
+                <td>Name Crypto</td>
                 <td>Count</td>
-                <td>$</td>
-                <td>Delete</td>
+                <td>Price by one$ at the time of purchase</td>
+                <td>Total cost at the time of purchase</td>
+                <td>Delete from you portfolio</td>
               </tr>
             </thead>
             <tbody>
@@ -42,7 +41,8 @@ export default function ModalPortfolio({ setOpenPortfolio }: any) {
                 <tr key={el.time}>
                   <td>{el.id}</td>
                   <td>{el.inputInf}</td>
-                  <td>{(+el.inputInf * +el.cryptoInf.priceUsd).toFixed(4)}</td>
+                  <td>{(+el.cryptoInf.priceUsd).toFixed(3)}</td>
+                  <td>{(+el.inputInf * +el.cryptoInf.priceUsd).toFixed(3)}</td>
                   <td>
                     <button
                       onClick={() => {

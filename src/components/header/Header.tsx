@@ -6,28 +6,52 @@ import "./Header.scss";
 export default function Header() {
   const [openPortfolio, setOpenPortfolio] = useState(false);
   const inf = useSelector((state: any) => state.crypto.cryptoList);
-
-  const sumPortfolio = inf.map((item: any) => {
-    const count = item.inputInf;
-    const name = item.cryptoInf.id;
-    return { name, count };
-  });
-
+  const allInf = useSelector((state: any) => state.crypto.allCryptos);
   // старые цена всего портфлея
-  const totalCount = inf.reduce((accum: number, item: any) => {
-    const inf = +item.inputInf * item.cryptoInf.priceUsd;
-    return accum + inf;
+  const oldPricePortfolio = inf.reduce((accum: number, item: any) => {
+    return accum + +item.inputInf * item.cryptoInf.priceUsd;
   }, 0);
 
+  const updatingArr = [];
+  for (const item of allInf) {
+    for (const el of inf) {
+      if (el.id === item.name) {
+        console.log(item);
+        updatingArr.push({
+          name: item.id,
+          price: item.priceUsd,
+          count: el.inputInf,
+        });
+      }
+    }
+  }
+
+  // цена обновлённого портфлея
+  const updatePricePortfolio = updatingArr.reduce(
+    (accum: number, item: any) => {
+      const inf = +item.count * item.price;
+      return accum + inf;
+    },
+    0
+  );
   return (
     <header>
       <div>
-        Top 3 ratting cryptos : {} <span>Bitcoin</span>, <span>Ethereum</span>,
-        <span>Tether</span>
+        Top 3 ratting cryptos : {} <span>{allInf[0].name}</span>,{" "}
+        <span>{allInf[1].name}</span>,<span>{allInf[2].name}</span>
       </div>
       <div className="portfolio">
-        <span>{totalCount.toFixed(3)}</span> <span>+-2,38</span>{" "}
-        <span>(1,8%)</span>
+        <div className="inf">
+          <span>Total:{updatePricePortfolio.toFixed(3)}$</span>
+          <span>
+            Difference{(oldPricePortfolio - updatePricePortfolio).toFixed(3)}$ (
+            {(
+              ((oldPricePortfolio - updatePricePortfolio) / oldPricePortfolio) *
+              100
+            ).toFixed(3)}
+            %)
+          </span>
+        </div>
         <img
           className="portfolio_img"
           src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
