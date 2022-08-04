@@ -6,12 +6,10 @@ import { Provider } from "react-redux";
 
 export default function Main() {
   return (
-    <Provider store={store}>
-      <div className="App">
-        <Header />
-        <Pagination />
-        <PaginationBtns />
-      </div>
-    </Provider>
+    <div className="App">
+      <Header />
+      <Pagination />
+      <PaginationBtns />
+    </div>
   );
 }

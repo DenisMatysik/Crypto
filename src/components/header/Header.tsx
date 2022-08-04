@@ -9,14 +9,13 @@ export default function Header() {
   const allInf = useSelector((state: any) => state.crypto.allCryptos);
   // старые цена всего портфлея
   const oldPricePortfolio = inf.reduce((accum: number, item: any) => {
-    return accum + +item.inputInf * item.cryptoInf.priceUsd;
+    return accum + +item.inputInf * +item.cryptoInf.priceUsd;
   }, 0);
 
   const updatingArr = [];
   for (const item of allInf) {
     for (const el of inf) {
       if (el.id === item.name) {
-        console.log(item);
         updatingArr.push({
           name: item.id,
           price: item.priceUsd,
@@ -29,8 +28,7 @@ export default function Header() {
   // цена обновлённого портфлея
   const updatePricePortfolio = updatingArr.reduce(
     (accum: number, item: any) => {
-      const inf = +item.count * item.price;
-      return accum + inf;
+      return accum + +item.count * +item.price;
     },
     0
   );
@@ -44,7 +42,8 @@ export default function Header() {
         <div className="inf">
           <span>Total:{updatePricePortfolio.toFixed(3)}$</span>
           <span>
-            Difference{(oldPricePortfolio - updatePricePortfolio).toFixed(3)}$ (
+            Difference:{(oldPricePortfolio - updatePricePortfolio).toFixed(3)}$
+            (
             {(
               ((oldPricePortfolio - updatePricePortfolio) / oldPricePortfolio) *
               100

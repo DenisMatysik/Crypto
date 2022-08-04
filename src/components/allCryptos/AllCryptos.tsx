@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import ModalAdd from "../modal/ModalAdd";
 import "./AllCryptos.scss";
 
@@ -22,7 +23,11 @@ export default function AllCryptos({ allCryptos, loading }: any) {
           {allCryptos.map((crypto: any) => (
             <tr key={crypto.id}>
               <td>{crypto.rank}</td>
-              <td>{crypto.name}</td>
+              <td>
+                <Link key={crypto.id} to={`/Crypto/${crypto.id}`}>
+                  {crypto.name}
+                </Link>
+              </td>
               <td>{(+crypto.priceUsd).toFixed(3)}</td>
               <td>{(+crypto.changePercent24Hr).toFixed(3)}</td>
               <td>{(+crypto.marketCapUsd).toFixed(3)}</td>

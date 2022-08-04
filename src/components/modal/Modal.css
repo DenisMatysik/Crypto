@@ -13,7 +13,7 @@
 
 .containerMod {
   background-color: white;
-  max-width: 600px;
+  max-width: max-content;
   width: 90%;
   margin: 0 auto;
   display: flex;
@@ -58,7 +58,6 @@
 }
 
 .modalInput {
-  width: 100%;
   padding: 0.7rem;
 }
 

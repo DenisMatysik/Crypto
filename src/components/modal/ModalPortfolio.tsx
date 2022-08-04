@@ -11,7 +11,7 @@ interface CrytoInfInterface {
 }
 
 export default function ModalPortfolio({ setOpenPortfolio }: any) {
-  const portfolioInf = useSelector((state: any) => state.crypto.cryptoList);
+  const inf = useSelector((state: any) => state.crypto.cryptoList);
   const dispatch = useDispatch();
 
   return (
@@ -37,7 +37,7 @@ export default function ModalPortfolio({ setOpenPortfolio }: any) {
               </tr>
             </thead>
             <tbody>
-              {portfolioInf.map((el: any) => (
+              {inf.map((el: any) => (
                 <tr key={el.time}>
                   <td>{el.id}</td>
                   <td>{el.inputInf}</td>
