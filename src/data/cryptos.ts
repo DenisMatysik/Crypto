@@ -1,4 +1,3 @@
-import React from "react";
 import { ICrypto } from "../model";
 
 export const cryptos: ICrypto[] = [
