@@ -5,6 +5,7 @@ import PaginationBtns from "./PaginationBtns";
 import "./Pagination.scss";
 import { useDispatch } from "react-redux";
 import { addAllCryptos } from "../../store/cryptoSlice";
+import Header from "../header/Header";
 
 export default function Pagination() {
   const [allCryptos, setAllCryptos] = useState<ICrypto[]>([]);
@@ -51,6 +52,7 @@ export default function Pagination() {
 
   return (
     <div className="container">
+      <Header />
       <AllCryptos allCryptos={currentCrypto} loading={loading} />
       <PaginationBtns
         cryptoPerPage={cryptoPerPage}

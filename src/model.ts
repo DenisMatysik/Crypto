@@ -12,3 +12,10 @@ export interface ICrypto {
   vwap24Hr: string | number;
   explorer: string;
 }
+
+export interface IPortCryptos {
+  cryptoInf: ICrypto;
+  id: string;
+  inputInf: string | number;
+  time: string;
+}

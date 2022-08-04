@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import ModalPortfolio from "../modal/ModalPortfolio";
 import "./Header.scss";
@@ -7,12 +7,8 @@ export default function Header() {
   const [openPortfolio, setOpenPortfolio] = useState(false);
   const inf = useSelector((state: any) => state.crypto.cryptoList);
   const allInf = useSelector((state: any) => state.crypto.allCryptos);
-  // старые цена всего портфлея
-  const oldPricePortfolio = inf.reduce((accum: number, item: any) => {
-    return accum + +item.inputInf * +item.cryptoInf.priceUsd;
-  }, 0);
 
-  const updatingArr = [];
+  const updatingArr: any = [];
   for (const item of allInf) {
     for (const el of inf) {
       if (el.id === item.name) {
@@ -25,6 +21,11 @@ export default function Header() {
     }
   }
 
+  // старые цена всего портфлея
+  const oldPricePortfolio = inf.reduce((accum: number, item: any) => {
+    return accum + +item.inputInf * +item.cryptoInf.priceUsd;
+  }, 0);
+
   // цена обновлённого портфлея
   const updatePricePortfolio = updatingArr.reduce(
     (accum: number, item: any) => {
@@ -32,6 +33,7 @@ export default function Header() {
     },
     0
   );
+
   return (
     <header>
       <div>

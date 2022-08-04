@@ -5,7 +5,7 @@ import PaginationBtns from "../components/pagination/PaginationBtns";
 export default function Main() {
   return (
     <div className="App">
-      <Header />
+      {/* <Header /> */}
       <Pagination />
       <PaginationBtns />
     </div>
