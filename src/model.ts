@@ -19,3 +19,8 @@ export interface IPortCryptos {
   inputInf: string | number;
   time: string;
 }
+
+export interface IHistory {
+  priceUsd: string;
+  time: number;
+}
