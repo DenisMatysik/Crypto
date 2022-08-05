@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ModalAdd from "../modal/ModalAdd";
 import "./AllCryptos.scss";
 
-export default function AllCryptos({ allCryptos, loading }: any) {
+export default function AllCryptos({ allCryptos }: any) {
   const [open, setOpen] = useState(false);
   const [cryptoInf, setCryptoInf] = useState({});
   return (

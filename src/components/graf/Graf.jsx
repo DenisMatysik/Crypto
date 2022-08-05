@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Line } from "react-chartjs-2";
 import { useParams } from "react-router-dom";
 import {
@@ -21,6 +21,17 @@ ChartJS.register(
   Legend
 );
 
+// interface IChart {
+//   labels: [];
+//   datasets: {
+//     data: [],
+//     label: string,
+//     borderColor: string,
+//     fill: boolean,
+//     lineTension: number,
+//   };
+// }
+
 const Graf = () => {
   const [historyInf, setHistoryInf] = useState([]);
   const { id } = useParams();
@@ -30,7 +41,7 @@ const Graf = () => {
       const response = await fetch(
         `https://api.coincap.io/v2/assets/${id}/history?interval=d1`
       );
-      let data = await response.json();
+      const data = await response.json();
       setHistoryInf(data.data);
     } catch (error) {
       console.log("Fetch error: ", error);

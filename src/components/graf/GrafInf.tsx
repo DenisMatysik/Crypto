@@ -1,5 +1,5 @@
-import React, { Component } from "react";
-import Graf from "./Graf.jsx";
+import { Component } from "react";
+import Graf from "./Graf";
 
 class GrafInf extends Component {
   render() {
