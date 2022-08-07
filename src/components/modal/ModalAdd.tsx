@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCrypto } from "../../store/cryptoSlice";
-import "./Modal.css";
+import "./Modal.scss";
 
 export default function ModalAdd({ setOpen, cryptoInf }: any) {
   const [inputInf, setInputInf] = useState("");
   const [errorValid, setErrorValid] = useState(false);
   const dispatch = useDispatch();
+
+  console.log(cryptoInf);
 
   const add = () => {
     if (inputInf != "") {

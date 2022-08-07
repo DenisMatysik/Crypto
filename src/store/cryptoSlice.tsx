@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { cryptos, cryptosPortfolio } from "../data/cryptos";
 import { IPortCryptos } from "../model";
 
 const getInitialCryptos = () => {

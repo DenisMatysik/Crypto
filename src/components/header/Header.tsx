@@ -4,7 +4,16 @@ import ModalPortfolio from "../modal/ModalPortfolio";
 import "./Header.scss";
 import { addAllCryptos } from "../../store/cryptoSlice";
 import { cryptos } from "../../data/cryptos";
-import { IPortCryptos } from "../../model";
+import { ICrypto, IPortCryptos } from "../../model";
+
+interface IStateInf {
+  allCryptos: Array<ICrypto>;
+  cryptoList: Array<IPortCryptos>;
+}
+
+interface IState {
+  crypto: IStateInf;
+}
 
 interface IUpdatingArr {
   name: string;
@@ -14,8 +23,8 @@ interface IUpdatingArr {
 
 export default function Header() {
   const [openPortfolio, setOpenPortfolio] = useState(false);
-  const inf = useSelector((state: any) => state.crypto.cryptoList);
-  const allInf = useSelector((state: any) => state.crypto.allCryptos);
+  const inf = useSelector((state: IState) => state.crypto.cryptoList);
+  const allInf = useSelector((state: IState) => state.crypto.allCryptos);
   const [allCryptos, setAllCryptos] = useState(cryptos);
   const dispatch = useDispatch();
 

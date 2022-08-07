@@ -1,10 +1,20 @@
 import { useDispatch, useSelector } from "react-redux";
-import { IPortCryptos } from "../../model";
+import { ICrypto, IPortCryptos } from "../../model";
 import { deleteCrypto } from "../../store/cryptoSlice";
-import "./Modal.css";
+import "./Modal.scss";
+
+interface IStateInf {
+  allCryptos: Array<ICrypto>;
+  cryptoList: Array<IPortCryptos>;
+}
+
+interface IState {
+  crypto: IStateInf;
+}
 
 export default function ModalPortfolio({ setOpenPortfolio }: any) {
-  const inf = useSelector((state: any) => state.crypto.cryptoList);
+  console.log(setOpenPortfolio);
+  const inf = useSelector((state: IState) => state.crypto.cryptoList);
   const dispatch = useDispatch();
 
   return (

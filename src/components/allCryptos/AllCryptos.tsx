@@ -4,14 +4,14 @@ import { ICrypto } from "../../model";
 import ModalAdd from "../modal/ModalAdd";
 import "./AllCryptos.scss";
 
-export default function AllCryptos(props: {
+interface IAllCryptos {
   allCryptos: Array<ICrypto>;
-  loading: boolean;
-}) {
+  loading?: boolean;
+}
+
+export default function AllCryptos({ allCryptos }: IAllCryptos) {
   const [open, setOpen] = useState(false);
   const [cryptoInf, setCryptoInf] = useState({});
-
-  console.log(props.allCryptos);
 
   return (
     <>
@@ -28,7 +28,7 @@ export default function AllCryptos(props: {
             </tr>
           </thead>
           <tbody>
-            {props.allCryptos.map((crypto: ICrypto) => (
+            {allCryptos.map((crypto: ICrypto) => (
               <tr key={crypto.id}>
                 <td>{crypto.rank}</td>
                 <td>
