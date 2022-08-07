@@ -7,7 +7,7 @@ const getInitialCryptos = () => {
   if (localCryptoList) {
     return JSON.parse(localCryptoList);
   }
-  window.localStorage.setItem("cryptoList", JSON.stringify(cryptosPortfolio));
+  window.localStorage.setItem("cryptoList", JSON.stringify([]));
   return [];
 };
 
@@ -16,7 +16,7 @@ const getAllCryptos = () => {
   if (allCryptos) {
     return JSON.parse(allCryptos);
   }
-  window.localStorage.setItem("AllCryptos", JSON.stringify(cryptos));
+  window.localStorage.setItem("AllCryptos", JSON.stringify([]));
   return [];
 };
 

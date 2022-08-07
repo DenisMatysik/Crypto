@@ -2,6 +2,7 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import "./AboutCrypto.scss";
 import GrafInf from "../components/graf/GrafInf";
+import { ICrypto } from "../model";
 
 export default function AboutCrypto() {
   const allInf = useSelector((state: any) => state.crypto.allCryptos);
@@ -9,7 +10,7 @@ export default function AboutCrypto() {
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
 
-  const singleCryptoInf = allInf.filter((el: any) => {
+  const singleCryptoInf = allInf.filter((el: ICrypto) => {
     return el.id == id;
   });
 
@@ -51,7 +52,11 @@ export default function AboutCrypto() {
           </>
           <div className="link">
             Explorer:{" "}
-            <a target={"_blank"} href={`${singleCryptoInf[0].explorer}`}>
+            <a
+              target={"_blank"}
+              rel={"noreferrer"}
+              href={`${singleCryptoInf[0].explorer}`}
+            >
               {singleCryptoInf[0].explorer}
             </a>
           </div>

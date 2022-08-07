@@ -34,7 +34,10 @@ export default function Pagination() {
 
   const lastCryptoIndex = currentPage * cryptoPerPage;
   const firstCryptoIndex = lastCryptoIndex - cryptoPerPage;
-  const currentCrypto = allCryptos.slice(firstCryptoIndex, lastCryptoIndex);
+  const currentCrypto: Array<ICrypto> = allCryptos.slice(
+    firstCryptoIndex,
+    lastCryptoIndex
+  );
 
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
