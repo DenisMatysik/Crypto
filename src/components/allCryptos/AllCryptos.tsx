@@ -1,11 +1,13 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ICrypto } from "../../model";
 import ModalAdd from "../modal/ModalAdd";
 import "./AllCryptos.scss";
 
 export default function AllCryptos({ allCryptos }: any) {
   const [open, setOpen] = useState(false);
   const [cryptoInf, setCryptoInf] = useState({});
+
   return (
     <>
       <ul className="allCrypto">
@@ -21,7 +23,7 @@ export default function AllCryptos({ allCryptos }: any) {
             </tr>
           </thead>
           <tbody>
-            {allCryptos.map((crypto: any) => (
+            {allCryptos.map((crypto: ICrypto) => (
               <tr key={crypto.id}>
                 <td>{crypto.rank}</td>
                 <td>

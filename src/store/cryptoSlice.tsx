@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { cryptos, cryptosPortfolio } from "../data/cryptos";
+import { IPortCryptos } from "../model";
 
 const getInitialCryptos = () => {
   const localCryptoList = window.localStorage.getItem("cryptoList");
@@ -49,7 +50,7 @@ const cryptoSlice = createSlice({
       const cryptoList = window.localStorage.getItem("cryptoList");
       if (cryptoList) {
         const cryptoListArr = JSON.parse(cryptoList);
-        cryptoListArr.forEach((crypto: any, index: any) => {
+        cryptoListArr.forEach((crypto: IPortCryptos, index: number) => {
           if (crypto.id === action.payload) {
             cryptoListArr.splice(index, 1);
           }

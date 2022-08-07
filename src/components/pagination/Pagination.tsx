@@ -18,7 +18,7 @@ export default function Pagination() {
     try {
       setLoading(true);
       const response = await fetch("https://api.coincap.io/v2/assets");
-      let data = await response.json();
+      const data = await response.json();
       setAllCryptos(data.data);
       setLoading(false);
       dispatch(addAllCryptos(data.data));

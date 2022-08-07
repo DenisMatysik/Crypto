@@ -4,6 +4,13 @@ import ModalPortfolio from "../modal/ModalPortfolio";
 import "./Header.scss";
 import { addAllCryptos } from "../../store/cryptoSlice";
 import { cryptos } from "../../data/cryptos";
+import { IPortCryptos } from "../../model";
+
+interface IUpdatingArr {
+  name: string;
+  price: string | number;
+  count: string | number;
+}
 
 export default function Header() {
   const [openPortfolio, setOpenPortfolio] = useState(false);
@@ -12,7 +19,7 @@ export default function Header() {
   const [allCryptos, setAllCryptos] = useState(cryptos);
   const dispatch = useDispatch();
 
-  const updatingArr: any = [];
+  const updatingArr = [];
   for (const item of allInf) {
     for (const el of inf) {
       if (el.id === item.name) {
@@ -26,13 +33,13 @@ export default function Header() {
   }
 
   // старые цена всего портфлея
-  const oldPricePortfolio = inf.reduce((accum: number, item: any) => {
+  const oldPricePortfolio = inf.reduce((accum: number, item: IPortCryptos) => {
     return accum + +item.inputInf * +item.cryptoInf.priceUsd;
   }, 0);
 
   // цена обновлённого портфлея
   const updatePricePortfolio = updatingArr.reduce(
-    (accum: number, item: any) => {
+    (accum: number, item: IUpdatingArr) => {
       return accum + +item.count * +item.price;
     },
     0
@@ -41,7 +48,7 @@ export default function Header() {
   async function fetctCryptos() {
     try {
       const response = await fetch("https://api.coincap.io/v2/assets");
-      let data = await response.json();
+      const data = await response.json();
       setAllCryptos(data.data);
       dispatch(addAllCryptos(data.data));
     } catch (error) {

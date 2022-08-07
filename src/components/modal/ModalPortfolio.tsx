@@ -1,14 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import { ICrypto } from "../../model";
+import { IPortCryptos } from "../../model";
 import { deleteCrypto } from "../../store/cryptoSlice";
 import "./Modal.css";
-
-interface CrytoInfInterface {
-  id?: string;
-  inputInf: string | number;
-  cryptoInf: ICrypto;
-  time: string;
-}
 
 export default function ModalPortfolio({ setOpenPortfolio }: any) {
   const inf = useSelector((state: any) => state.crypto.cryptoList);
@@ -37,7 +30,7 @@ export default function ModalPortfolio({ setOpenPortfolio }: any) {
               </tr>
             </thead>
             <tbody>
-              {inf.map((el: any) => (
+              {inf.map((el: IPortCryptos) => (
                 <tr key={el.time}>
                   <td>{el.id}</td>
                   <td>{el.inputInf}</td>
