@@ -1,19 +1,8 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import ModalPortfolio from "../modal/ModalPortfolio";
 import "./Header.scss";
-import { addAllCryptos } from "../../store/cryptoSlice";
-import { cryptos } from "../../data/cryptos";
-import { ICrypto, IPortCryptos } from "../../model";
-
-interface IStateInf {
-  allCryptos: Array<ICrypto>;
-  cryptoList: Array<IPortCryptos>;
-}
-
-interface IState {
-  crypto: IStateInf;
-}
+import { IPortCryptos, IState } from "../../model";
 
 interface IUpdatingArr {
   name: string;
@@ -25,8 +14,6 @@ export default function Header() {
   const [openPortfolio, setOpenPortfolio] = useState(false);
   const inf = useSelector((state: IState) => state.crypto.cryptoList);
   const allInf = useSelector((state: IState) => state.crypto.allCryptos);
-  const [allCryptos, setAllCryptos] = useState(cryptos);
-  const dispatch = useDispatch();
 
   const updatingArr = [];
   for (const item of allInf) {
@@ -41,12 +28,10 @@ export default function Header() {
     }
   }
 
-  // старые цена всего портфлея
   const oldPricePortfolio = inf.reduce((accum: number, item: IPortCryptos) => {
     return accum + +item.inputInf * +item.cryptoInf.priceUsd;
   }, 0);
 
-  // цена обновлённого портфлея
   const updatePricePortfolio = updatingArr.reduce(
     (accum: number, item: IUpdatingArr) => {
       return accum + +item.count * +item.price;
@@ -54,49 +39,58 @@ export default function Header() {
     0
   );
 
-  async function fetctCryptos() {
-    try {
-      const response = await fetch("https://api.coincap.io/v2/assets");
-      const data = await response.json();
-      setAllCryptos(data.data);
-      dispatch(addAllCryptos(data.data));
-    } catch (error) {
-      console.log("Fetch error: ", error);
-    }
-  }
-
-  useEffect(() => {
-    fetctCryptos();
-  }, []);
-
   return (
     <header>
-      <div>
-        Top 3 ratting cryptos : {} <span>{allCryptos[0].name}</span>,{" "}
-        <span>{allCryptos[1].name}</span>,<span>{allCryptos[2].name}</span>
-      </div>
-      <div className="portfolio">
-        <div className="inf">
-          <span>Total:{updatePricePortfolio.toFixed(3)}$</span>
-          <span>
-            Difference:{(oldPricePortfolio - updatePricePortfolio).toFixed(3)}$
-            (
-            {(
-              ((oldPricePortfolio - updatePricePortfolio) / oldPricePortfolio) *
-              100
-            ).toFixed(3)}
-            %)
-          </span>
+      {allInf.length != 0 ? (
+        <div>
+          Top 3 ratting cryptos : <span>{allInf[0].name}</span>,{" "}
+          <span>{allInf[1].name}</span>, <span>{allInf[2].name}</span>
         </div>
-        <img
-          className="portfolio_img"
-          src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
-          alt="you_portfolio"
-          onClick={() => {
-            setOpenPortfolio(true);
-          }}
-        />
-      </div>
+      ) : (
+        <div>
+          Top 3 ratting cryptos :<span>BNB</span>,<span>XRP</span>,
+          <span>USD Coin</span>
+        </div>
+      )}
+      {inf.length != 0 ? (
+        <div className="portfolio">
+          <div className="inf">
+            <span>Total:{updatePricePortfolio.toFixed(3)}$</span>
+            <span>
+              Difference:{(oldPricePortfolio - updatePricePortfolio).toFixed(3)}
+              $ (
+              {(
+                ((oldPricePortfolio - updatePricePortfolio) /
+                  oldPricePortfolio) *
+                100
+              ).toFixed(3)}
+              %)
+            </span>
+          </div>
+          <img
+            className="portfolio_img"
+            src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
+            alt="you_portfolio"
+            onClick={() => {
+              setOpenPortfolio(true);
+            }}
+          />
+        </div>
+      ) : (
+        <div className="portfolio">
+          <div className="inf">
+            <span>Add some cryptos to your portfolio</span>
+          </div>
+          <img
+            className="portfolio_img"
+            src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
+            alt="you_portfolio"
+            onClick={() => {
+              setOpenPortfolio(true);
+            }}
+          />
+        </div>
+      )}
       {openPortfolio && <ModalPortfolio setOpenPortfolio={setOpenPortfolio} />}
     </header>
   );
