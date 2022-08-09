@@ -3,14 +3,14 @@ import "./Pagination";
 interface IPaginationBtns {
   cryptoPerPage: number;
   totalCryptos: number;
-  paginate: any;
+  paginate: (x: number) => void;
 }
 
 export default function PaginationBtns({
   cryptoPerPage,
   totalCryptos,
   paginate,
-}: any) {
+}: IPaginationBtns) {
   console.log(paginate);
   const pageCryptos = [];
   for (let i = 1; i <= Math.ceil(totalCryptos / cryptoPerPage); i++) {

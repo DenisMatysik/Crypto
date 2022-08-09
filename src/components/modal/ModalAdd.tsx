@@ -1,14 +1,18 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
+import { ICrypto } from "../../model";
 import { addCrypto } from "../../store/cryptoSlice";
 import "./Modal.scss";
 
-export default function ModalAdd({ setOpen, cryptoInf }: any) {
+interface IModalAdd {
+  setOpen: (x: boolean) => void;
+  cryptoInf: ICrypto;
+}
+
+export default function ModalAdd({ setOpen, cryptoInf }: IModalAdd) {
   const [inputInf, setInputInf] = useState("");
   const [errorValid, setErrorValid] = useState(false);
   const dispatch = useDispatch();
-
-  console.log(cryptoInf);
 
   const add = () => {
     if (inputInf != "") {

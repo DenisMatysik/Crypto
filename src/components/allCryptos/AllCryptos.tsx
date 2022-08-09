@@ -11,7 +11,20 @@ interface IAllCryptos {
 
 export default function AllCryptos({ allCryptos }: IAllCryptos) {
   const [open, setOpen] = useState(false);
-  const [cryptoInf, setCryptoInf] = useState({});
+  const [cryptoInf, setCryptoInf] = useState<ICrypto>({
+    id: "bitcoin",
+    rank: "1",
+    symbol: "BTC",
+    name: "Bitcoin",
+    supply: "19110256",
+    maxSupply: "21000000",
+    marketCapUsd: "438337851832",
+    volumeUsd24Hr: "11325632332",
+    priceUsd: "22937",
+    changePercent24Hr: "-0.9",
+    vwap24Hr: "23063",
+    explorer: "https://blockchain.info/",
+  });
 
   return (
     <>
@@ -43,7 +56,9 @@ export default function AllCryptos({ allCryptos }: IAllCryptos) {
                   <button
                     onClick={() => {
                       setOpen(true);
+                      console.log("-", cryptoInf);
                       setCryptoInf(crypto);
+                      console.log("+", cryptoInf);
                     }}
                   >
                     +

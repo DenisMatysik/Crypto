@@ -2,10 +2,19 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import "./AboutCrypto.scss";
 import GrafInf from "../components/graf/GrafInf";
-import { ICrypto } from "../model";
+import { ICrypto, IPortCryptos } from "../model";
+
+interface IStateInf {
+  allCryptos: Array<ICrypto>;
+  cryptoList: Array<IPortCryptos>;
+}
+
+interface IState {
+  crypto: IStateInf;
+}
 
 export default function AboutCrypto() {
-  const allInf = useSelector((state: any) => state.crypto.allCryptos);
+  const allInf = useSelector((state: IState) => state.crypto.allCryptos);
   const { id } = useParams();
   const navigate = useNavigate();
   const goBack = () => navigate(-1);
@@ -40,7 +49,12 @@ export default function AboutCrypto() {
                 <td>{singleCryptoInf[0].symbol}</td>
                 <td>{(+singleCryptoInf[0].priceUsd).toFixed(5)}</td>
                 <td>{(+singleCryptoInf[0].supply).toFixed(5)}</td>
-                <td>{(+singleCryptoInf[0].maxSupply).toFixed(5)}</td>
+                {singleCryptoInf[0].maxSupply != null ? (
+                  <td>{(+singleCryptoInf[0].maxSupply).toFixed(5)}</td>
+                ) : (
+                  <td>null</td>
+                )}
+                {/* <td>{(+singleCryptoInf[0].maxSupply).toFixed(5)}</td> */}
                 <td>{(+singleCryptoInf[0].volumeUsd24Hr).toFixed(5)}</td>
                 <td>{(+singleCryptoInf[0].changePercent24Hr).toFixed(5)}</td>
                 <td>{(+singleCryptoInf[0].vwap24Hr).toFixed(5)}</td>

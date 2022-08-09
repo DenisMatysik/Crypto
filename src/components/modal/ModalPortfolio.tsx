@@ -12,7 +12,11 @@ interface IState {
   crypto: IStateInf;
 }
 
-export default function ModalPortfolio({ setOpenPortfolio }: any) {
+interface IModalPortfolio {
+  setOpenPortfolio: (x: boolean) => void;
+}
+
+export default function ModalPortfolio({ setOpenPortfolio }: IModalPortfolio) {
   console.log(setOpenPortfolio);
   const inf = useSelector((state: IState) => state.crypto.cryptoList);
   const dispatch = useDispatch();
