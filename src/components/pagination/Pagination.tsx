@@ -61,7 +61,7 @@ export default function Pagination() {
       <AllCryptos allCryptos={currentCrypto} loading={loading} />
       <div className="prevNextBtns">
         <button className="prevBtns" onClick={prevPage}>
-          Prev Page
+          ←
         </button>
         <PaginationBtns
           cryptoPerPage={cryptoPerPage}
@@ -69,7 +69,7 @@ export default function Pagination() {
           paginate={paginate}
         />
         <button className="nextBtns" onClick={nextPage}>
-          Next Page
+          →
         </button>
       </div>
     </div>
