@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import ModalPortfolio from "../modal/ModalPortfolio";
 import "./Header.scss";
 import { IPortCryptos, IState } from "../../model";
+import Portfolio from "../../assets/portfolio.png";
 
 interface IUpdatingArr {
   name: string;
@@ -69,7 +70,7 @@ export default function Header() {
           </div>
           <img
             className="portfolio_img"
-            src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
+            src={Portfolio}
             alt="you_portfolio"
             onClick={() => {
               setOpenPortfolio(true);
@@ -83,7 +84,7 @@ export default function Header() {
           </div>
           <img
             className="portfolio_img"
-            src="http://cdn.onlinewebfonts.com/svg/img_543533.png"
+            src={Portfolio}
             alt="you_portfolio"
             onClick={() => {
               setOpenPortfolio(true);

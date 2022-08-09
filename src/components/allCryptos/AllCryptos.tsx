@@ -26,8 +26,6 @@ export default function AllCryptos({ allCryptos, loading }: IAllCryptos) {
     explorer: "",
   });
 
-  console.log(Date.now(), "render Allcryptos");
-
   return (
     <>
       {loading ? (
