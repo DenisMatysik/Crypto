@@ -11,11 +11,11 @@ export default function PaginationBtns({
   totalCryptos,
   paginate,
 }: IPaginationBtns) {
-  console.log(paginate);
   const pageCryptos = [];
   for (let i = 1; i <= Math.ceil(totalCryptos / cryptoPerPage); i++) {
     pageCryptos.push(i);
   }
+
   return (
     <div className="paginationBtns">
       {pageCryptos.map((el) => (

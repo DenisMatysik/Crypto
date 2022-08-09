@@ -2,16 +2,7 @@ import { useSelector } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
 import "./AboutCrypto.scss";
 import GrafInf from "../components/graf/GrafInf";
-import { ICrypto, IPortCryptos } from "../model";
-
-interface IStateInf {
-  allCryptos: Array<ICrypto>;
-  cryptoList: Array<IPortCryptos>;
-}
-
-interface IState {
-  crypto: IStateInf;
-}
+import { ICrypto, IState } from "../model";
 
 export default function AboutCrypto() {
   const allInf = useSelector((state: IState) => state.crypto.allCryptos);
@@ -54,7 +45,6 @@ export default function AboutCrypto() {
                 ) : (
                   <td>null</td>
                 )}
-                {/* <td>{(+singleCryptoInf[0].maxSupply).toFixed(5)}</td> */}
                 <td>{(+singleCryptoInf[0].volumeUsd24Hr).toFixed(5)}</td>
                 <td>{(+singleCryptoInf[0].changePercent24Hr).toFixed(5)}</td>
                 <td>{(+singleCryptoInf[0].vwap24Hr).toFixed(5)}</td>

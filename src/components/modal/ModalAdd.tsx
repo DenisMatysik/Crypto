@@ -15,7 +15,7 @@ export default function ModalAdd({ setOpen, cryptoInf }: IModalAdd) {
   const dispatch = useDispatch();
 
   const add = () => {
-    if (inputInf != "") {
+    if (inputInf != "" && +inputInf > 0) {
       dispatch(
         addCrypto({
           id: cryptoInf.name,
@@ -24,7 +24,9 @@ export default function ModalAdd({ setOpen, cryptoInf }: IModalAdd) {
           time: new Date().toLocaleString(),
         })
       );
+      setOpen(false);
     } else {
+      setOpen(true);
       setErrorValid(true);
     }
   };
@@ -43,14 +45,15 @@ export default function ModalAdd({ setOpen, cryptoInf }: IModalAdd) {
                 setInputInf(e.target.value);
               }}
             />
+            {errorValid && (
+              <div className="errorMes">Invalid count (must be {">"} 0)</div>
+            )}
           </form>
-          {errorValid && <div>Add some count</div>}
           <div className="modalBtns">
             <button
               className="addButton"
               onClick={() => {
                 add();
-                setOpen(false);
               }}
             >
               Add

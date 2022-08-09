@@ -1,7 +1,6 @@
 import { Provider } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
-import Header from "./components/header/Header";
 import AboutCrypto from "./pages/AboutCrypto";
 import Main from "./pages/Main";
 import NotFoundPage from "./pages/NotFoundPage";

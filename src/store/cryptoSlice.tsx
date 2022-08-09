@@ -64,25 +64,8 @@ const cryptoSlice = createSlice({
     addAllCryptos: (state, action) => {
       window.localStorage.setItem("AllCryptos", JSON.stringify(action.payload));
     },
-    // updateCrypto: (state, action) => {
-    //   const cryptoList = window.localStorage.getItem("cryptoList");
-    //   if (cryptoList) {
-    //     const cryptoListArr = JSON.parse(cryptoList);
-    //     cryptoListArr.forEach((crypto: any) => {
-    //       if (crypto.id === action.payload.id) {
-    //         crypto.inputInf = action.payload.inputInf;
-    //       }
-    //     });
-    //     window.localStorage.setItem(
-    //       "cryptoList",
-    //       JSON.stringify(cryptoListArr)
-    //     );
-    //     state.cryptoList = cryptoListArr;
-    //   }
-    // },
   },
 });
 
 export const { addCrypto, deleteCrypto, addAllCryptos } = cryptoSlice.actions;
-
 export default cryptoSlice.reducer;

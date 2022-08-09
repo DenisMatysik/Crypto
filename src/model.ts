@@ -24,3 +24,12 @@ export interface IHistory {
   priceUsd: string;
   time: number;
 }
+
+interface IStateInf {
+  allCryptos: Array<ICrypto>;
+  cryptoList: Array<IPortCryptos>;
+}
+
+export interface IState {
+  crypto: IStateInf;
+}

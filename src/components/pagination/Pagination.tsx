@@ -11,7 +11,7 @@ export default function Pagination() {
   const [allCryptos, setAllCryptos] = useState<ICrypto[]>([]);
   const [loading, setLoading] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const cryptoPerPage = 10;
+  const cryptoPerPage = 10; // количесвто элементов на странице
   const dispatch = useDispatch();
 
   async function fetctCryptos() {
@@ -20,7 +20,7 @@ export default function Pagination() {
       const response = await fetch("https://api.coincap.io/v2/assets");
       const data = await response.json();
       setAllCryptos(data.data);
-      setLoading(false);
+      setLoading(true);
       dispatch(addAllCryptos(data.data));
     } catch (error) {
       console.log("Fetch error: ", error);
@@ -42,11 +42,13 @@ export default function Pagination() {
   const paginate = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
   const nextPage = () => {
     if (currentPage != Math.ceil(allCryptos.length / cryptoPerPage)) {
       setCurrentPage((prev) => prev + 1);
     }
   };
+
   const prevPage = () => {
     if (currentPage != 1) {
       setCurrentPage((prev) => prev - 1);
@@ -57,15 +59,15 @@ export default function Pagination() {
     <div className="container">
       <Header />
       <AllCryptos allCryptos={currentCrypto} loading={loading} />
-      <PaginationBtns
-        cryptoPerPage={cryptoPerPage}
-        totalCryptos={allCryptos.length}
-        paginate={paginate}
-      />
       <div className="prevNextBtns">
         <button className="prevBtns" onClick={prevPage}>
           Prev Page
         </button>
+        <PaginationBtns
+          cryptoPerPage={cryptoPerPage}
+          totalCryptos={allCryptos.length}
+          paginate={paginate}
+        />
         <button className="nextBtns" onClick={nextPage}>
           Next Page
         </button>
