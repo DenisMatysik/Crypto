@@ -6,6 +6,7 @@ import "./Pagination.scss";
 import { useDispatch } from "react-redux";
 import { addAllCryptos } from "../../store/cryptoSlice";
 import Header from "../header/Header";
+import Refresh from "../../assets/refresh.png";
 
 export default function Pagination() {
   const [allCryptos, setAllCryptos] = useState<ICrypto[]>([]);
@@ -55,8 +56,15 @@ export default function Pagination() {
     }
   };
 
+  const refreshPage = () => {
+    window.location.reload();
+  };
+
   return (
     <div className="container">
+      <button onClick={refreshPage}>
+        <img className="refresh" src={Refresh} />
+      </button>
       <Header />
       <AllCryptos allCryptos={currentCrypto} loading={loading} />
       <div className="prevNextBtns">
