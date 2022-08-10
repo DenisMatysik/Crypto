@@ -49,8 +49,8 @@ export default function Header() {
         </div>
       ) : (
         <div>
-          Top 3 ratting cryptos :<span>BNB</span>,<span>XRP</span>,
-          <span>USD Coin</span>
+          Top 3 ratting cryptos :<span>Bitcoin</span>,<span>Ethereum</span>,
+          <span>Tether</span>
         </div>
       )}
       {inf.length != 0 ? (
